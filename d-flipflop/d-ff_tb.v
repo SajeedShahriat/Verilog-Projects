@@ -10,6 +10,12 @@ module d_ff_tb ();
 reg data, reset, clk; //declare all inputs as registers
 wire q; // declare all outputs as wires
 
+
+always 
+	begin	
+		#100 clk = ~clk; //initialize clk
+	end
+
 initial
 	begin
 		$dumpfile ("d_ff_wave.vcd"); //required for gtkwaveform
@@ -17,27 +23,26 @@ initial
 
 		$display ("time\t clk reset data q");
 		$monitor ("%g\t %b %b %b", $time, clk, reset, data, q);
-		data = 0; //initial value of data
-		reset = 0; //initial value of reset
-	end
-
-		always #100 clk = ~clk; //initialize clk
+		clk = 1'b1; //initial value of clock		
+		data = 1'b0; //initial value of data
+		reset = 1'b0; //initial value of reset
 
 //stimulus
-initial
-	begin
-	#200 data = 1b'1;
-	reset = 1b'1;
-	#200 data = 1b'1;
-	reset = 1b'1;
-
-	#300 data = 1b'1;
-	reset = 1b'1;
-	#600 data = 1b'0;
-	#500 data = 1b'1;
-	#200 data = 1b'0;
-	#400 $stop;
+	#100 data = 1'b1;
+	#300 reset = 1'b1; 
+	#300 reset = 1'b0;
+	#600 data = 1'b0;
+	#500 data = 1'b1;
+	#200 data = 1'b0;
+	#400 $finish;
 	end
 
+//connect DUT to test bench
+d_ff connect_d_ff (
+	data,
+	q,	
+	reset,	
+	clk
+);
 endmodule
 	

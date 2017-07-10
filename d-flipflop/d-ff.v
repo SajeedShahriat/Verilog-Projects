@@ -32,7 +32,7 @@ reg q;
 always @ (posedge clk)
 	if (reset == 1)
 		begin
-			q <= 1b'0;
+			q <= 1'b0;
 		end
 	else
 		begin

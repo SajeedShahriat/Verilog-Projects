@@ -28,7 +28,15 @@ initial
 	begin
 	#200 data = 1b'1;
 	reset = 1b'1;
-	#200 data = 
+	#200 data = 1b'1;
+	reset = 1b'1;
+
+	#300 data = 1b'1;
+	reset = 1b'1;
+	#600 data = 1b'0;
+	#500 data = 1b'1;
+	#200 data = 1b'0;
+	#400 $stop;
 	end
 
 endmodule

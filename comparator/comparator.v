@@ -15,8 +15,8 @@ module comparator (
 ); //end of port list
 
 //---------------------------input ports-----------------------------
-input a;
-input b;
+input [1:0] a;
+input [1:0] b;
 
 //---------------------------output ports----------------------------
 output a_less_b;

@@ -7,7 +7,9 @@ This files can be reused and modified given that this copyright notice is not re
 
 module comparator_tb();
 
-reg a, b; //declare all inputs as registers
+reg [1:0] a; //declare all inputs as registers
+reg [1:0] b;
+	
 wire a_less_b, a_equal_b, a_greater_b; //declare all outputs as wires
 
 initial
@@ -15,8 +17,8 @@ initial
 		$dumpfile ("comparator_wave.vcd"); //required for gtkwaveform
 		$dumpvars (0, comparator_tb); //required for gtkwaveform
 
-		$display ("time\t a b a<b a=b a>b");
-		$monitor ("%g\t %b %b %b\t %b  %b", $time, a, b, a_less_b, a_equal_b, a_greater_b);
+		$display ("time\t a b\t a<b a=b a>b");
+		$monitor ("%g\t %b %b\t %b %b  %b", $time, a, b, a_less_b, a_equal_b, a_greater_b);
 
 //stimulus
 
